@@ -3,7 +3,7 @@ import { useState } from "react";
 import axios from "axios";
 
 function Header() {
-  const [text, setText] = useState("");
+  const [text, setText] = useState([]);
 
   function getText() {
     axios.get("http://localhost:4050/api/get").then((res) => {
@@ -15,7 +15,9 @@ function Header() {
     <div>
       <h1>Header</h1>
       <button onClick={getText}>Get Text</button>
-      <h1 style={{color: "yellow"}} >{text}</h1>
+      {text.map((item) => {
+        return <h1 style={{ color: "yellow" }}>{item.text}</h1>;
+      })}
     </div>
   );
 }
